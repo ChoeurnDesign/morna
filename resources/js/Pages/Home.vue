@@ -254,13 +254,12 @@ const mainProductComputed = computed(() => props.mainProduct);
                             <h2
                                 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 text-center lg:text-left"
                             >
-                                Refresh your day with {{ siteName }}
+                                {{ siteName }}
                             </h2>
                             <p
                                 class="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed text-center lg:text-left"
                             >
-                                A modern mulberry drink made by Cambodian
-                                students. Real fruit, real flavor, real impact.
+                                Where local fruit and youthful innovation come together in every refreshing bottle.
                             </p>
 
                             <div
@@ -269,17 +268,17 @@ const mainProductComputed = computed(() => props.mainProduct);
                                 <span
                                     class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-purple-50 text-purple-700 font-medium border border-purple-200 text-xs sm:text-sm"
                                 >
-                                    Real mulberry
+                                    Fresh & Authentic
                                 </span>
                                 <span
                                     class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-green-50 text-green-700 font-medium border border-green-200 text-xs sm:text-sm"
                                 >
-                                    Student startup
+                                    Made with Purpose
                                 </span>
                                 <span
                                     class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-orange-50 text-orange-700 font-medium border border-orange-200 text-xs sm:text-sm"
                                 >
-                                    Farm-inspired
+                                    Farm-Inspired Goodness
                                 </span>
                             </div>
                         </div>
