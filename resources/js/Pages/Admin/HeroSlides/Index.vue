@@ -51,7 +51,7 @@ const primaryImageUrl = (slide) => {
                 href="/admin/hero-slides/create"
                 class="shrink-0 inline-flex items-center px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 whitespace-nowrap"
             >
-                + New Slide
+                + Add Slide
             </Link>
         </div>
 
