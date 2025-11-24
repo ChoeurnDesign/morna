@@ -38,22 +38,22 @@ const primaryImageUrl = (slide) => {
 <template>
     <AdminLayout title="Hero slides">
         <div class="flex items-center justify-between mb-6">
-    <div class="max-w-xs md:max-w-md">
-        <h2 class="text-xl text-gray-900">
-            Hero slides
-        </h2>
-        <p class="text-sm text-gray-600">
-            Manage the slides that appear in the home page hero section.
-        </p>
-    </div>
+            <div class="min-w-0 mr-3">
+                <h2 class="text-xl text-gray-900">
+                    Hero slides
+                </h2>
+                <p class="text-sm text-gray-600">
+                    Manage the slides that appear in the home page hero section.
+                </p>
+            </div>
 
-    <Link
-        href="/admin/hero-slides/create"
-        class="shrink-0 inline-flex items-center px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700"
-    >
-        + New slide
-    </Link>
-</div>
+            <Link
+                href="/admin/hero-slides/create"
+                class="shrink-0 inline-flex items-center px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 whitespace-nowrap"
+            >
+                + New Slide
+            </Link>
+        </div>
 
         <!-- flash -->
         <div
