@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Providers\RouteServiceProvider;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -24,26 +25,13 @@ class AuthenticatedSessionController extends Controller
         ]);
     }
 
-    /**
-     * Handle the login form submission.
-     */
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        $user = $request->user();
-
-        // ✅ If admin → go to /admin
-        if ($user && $user->is_admin) {
-            // You can also use a named route here if you have one:
-            // return redirect()->route('admin.dashboard');
-            return redirect()->intended('/admin');
-        }
-
-        // ✅ Normal user → go to home (e.g. /dashboard or /)
-        return redirect()->route('home');
+        // The line below is often hardcoded to 'dashboard' or '/'
+        return redirect()->intended(RouteServiceProvider::HOME); 
     }
 
     /**
