@@ -10,10 +10,9 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * The path to your application's "home" route.
      *
-     * Typically, users are redirected here after authentication.
-     * We're setting this to '/admin' to point to the main dashboard.
+     * We'll make this dynamic based on user role in the controller
      */
-    public const HOME = '/admin'; 
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

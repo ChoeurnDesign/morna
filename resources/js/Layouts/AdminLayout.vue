@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, usePage, router } from '@inertiajs/vue3';
 import {
     LayoutDashboard,
     Image,
@@ -45,6 +45,15 @@ const currentUrl = computed(() => page.url);
 
 const closeSidebar = () => {
     isSidebarOpen.value = false;
+};
+
+// Logout with confirmation
+const handleLogout = (event) => {
+    event.preventDefault();
+    
+    if (confirm('Are you sure you want to logout?')) {
+        router.post('/logout');
+    }
 };
 </script>
 
@@ -118,14 +127,12 @@ const closeSidebar = () => {
                         </span>
                     </div>
 
-                    <Link
-                        href="/logout"
-                        method="post"
-                        as="button"
+                    <button
+                        @click="handleLogout"
                         class="inline-flex items-center px-3 py-1.5 rounded-full border border-gray-200 text-xs font-medium text-gray-700 hover:bg-gray-50"
                     >
                         Logout
-                    </Link>
+                    </button>
                 </div>
             </header>
 
@@ -178,7 +185,6 @@ const closeSidebar = () => {
                                     currentUrl === item.href ||
                                     currentUrl.startsWith(item.href + '/')
                                         ? 'bg-purple-50 text-purple-700 font-medium'
-                                        /* 🛑 Mobile Nav Item: Added hover:bg-gray-100 to show a slight dark gray on hover/tap 🛑 */
                                         : 'text-gray-600 hover:bg-gray-100', 
                                 ]"
                             >

@@ -30,8 +30,13 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        // The line below is often hardcoded to 'dashboard' or '/'
-        return redirect()->intended(RouteServiceProvider::HOME); 
+        // Check user role and redirect accordingly
+        if ($request->user()->role === 'admin') {
+            return redirect()->intended('/admin');
+        }
+        
+        // Regular users go to homepage
+        return redirect()->intended('/');
     }
 
     /**
@@ -44,7 +49,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // After logout, also go back to home page
         return redirect()->route('home');
     }
 }

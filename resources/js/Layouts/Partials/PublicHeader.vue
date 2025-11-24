@@ -1,5 +1,5 @@
 <script setup>
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, usePage, router } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import {
     Bars3Icon,
@@ -45,6 +45,23 @@ const siteName = computed(() => {
 const closeAll = () => {
     isMobileNavOpen.value = false;
     isAccountOpen.value = false;
+};
+
+// Logout with confirmation
+const handleLogout = (event) => {
+    event.preventDefault();
+    
+    if (confirm('Are you sure you want to logout?')) {
+        router.post('/logout');
+    }
+};
+
+// Mobile logout with confirmation
+const handleMobileLogout = () => {
+    if (confirm('Are you sure you want to logout?')) {
+        router.post('/logout');
+        closeAll();
+    }
 };
 </script>
 
@@ -155,15 +172,12 @@ const closeAll = () => {
 
                                 <div class="border-t border-gray-100 mt-1 mb-1" />
 
-                                <Link
-                                    href="/logout"
-                                    method="post"
-                                    as="button"
+                                <button
+                                    @click="handleLogout"
                                     class="block w-full px-3 py-1.5 text-left text-red-600 hover:bg-red-50"
-                                    @click="isAccountOpen = false"
                                 >
                                     Log out
-                                </Link>
+                                </button>
                             </div>
                         </Transition>
                     </div>
@@ -260,15 +274,12 @@ const closeAll = () => {
                                     Admin dashboard
                                 </Link>
 
-                                <Link
-                                    href="/logout"
-                                    method="post"
-                                    as="button"
+                                <button
+                                    @click="handleMobileLogout"
                                     class="block w-full px-3 py-1.5 text-left text-red-600 hover:bg-red-50 mt-1"
-                                    @click="closeAll"
                                 >
                                     Log out
-                                </Link>
+                                </button>
                             </template>
 
                             <template v-else>
