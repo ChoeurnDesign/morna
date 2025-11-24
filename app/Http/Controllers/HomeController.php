@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\HeroSlide;
 use App\Models\Product;
-use App\Models\Setting; // Changed from SiteSetting to Setting
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Database\QueryException;
@@ -14,6 +13,7 @@ class HomeController extends Controller
 {
     public function index(): Response
     {
+        // Hero slides
         try {
             $heroSlides = HeroSlide::with('images')
                 ->where('is_active', true)
@@ -45,6 +45,7 @@ class HomeController extends Controller
             $heroSlides = [];
         }
 
+        // Main product
         try {
             $mainProductModel = Product::where('is_active', true)
                 ->where('is_main', true)
@@ -65,28 +66,10 @@ class HomeController extends Controller
             $mainProduct = null;
         }
 
-        // Get site settings using Setting model
-        try {
-            $settings = Setting::first();
-            $siteData = $settings ? [
-                'site_name' => $settings->site_name,
-                'logo_url' => $settings->logo_path ? asset('storage/' . $settings->logo_path) : null,
-            ] : [
-                'site_name' => 'Morna Mulberry',
-                'logo_url' => null,
-            ];
-        } catch (QueryException $e) {
-            Log::error('Settings query failed: ' . $e->getMessage());
-            $siteData = [
-                'site_name' => 'Morna Mulberry',
-                'logo_url' => null,
-            ];
-        }
-
+        // Do NOT pass siteSettings here; it comes from HandleInertiaRequests
         return Inertia::render('Home', [
             'heroSlides'  => $heroSlides,
             'mainProduct' => $mainProduct,
-            'siteSettings' => $siteData,
         ]);
     }
 }
