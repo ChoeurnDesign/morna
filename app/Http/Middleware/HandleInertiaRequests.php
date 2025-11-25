@@ -33,17 +33,38 @@ class HandleInertiaRequests extends Middleware
     {
         try {
             $settings = Setting::getSettings();
+
             $siteSettings = [
                 'site_name'      => $settings->site_name,
                 'contact_email'  => $settings->contact_email,
                 'contact_phone'  => $settings->contact_phone,
                 'address'        => $settings->address,
                 'footer_text'    => $settings->footer_text,
-                'logo_url'       => $settings->logo_path ? Storage::url($settings->logo_path) : null,
-                'favicon_url'    => $settings->favicon_path ? Storage::url($settings->favicon_path) : null,
+                'logo_url'       => $settings->logo_path
+                    ? Storage::url($settings->logo_path)
+                    : null,
+                'favicon_url'    => $settings->favicon_path
+                    ? Storage::url($settings->favicon_path)
+                    : null,
+                // NEW: social URLs
+                'facebook_url'   => $settings->facebook_url,
+                'instagram_url'  => $settings->instagram_url,
+                'tiktok_url'     => $settings->tiktok_url,
             ];
         } catch (\Exception $e) {
-            // defaults...
+            // Fallback defaults if settings table is missing or query fails
+            $siteSettings = [
+                'site_name'      => 'Morna Mulberry',
+                'contact_email'  => null,
+                'contact_phone'  => null,
+                'address'        => null,
+                'footer_text'    => '© ' . date('Y') . ' Morna Mulberry. All rights reserved.',
+                'logo_url'       => null,
+                'favicon_url'    => null,
+                'facebook_url'   => null,
+                'instagram_url'  => null,
+                'tiktok_url'     => null,
+            ];
         }
 
         return array_merge(parent::share($request), [

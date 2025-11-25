@@ -14,6 +14,10 @@ class Setting extends Model
         'contact_phone',
         'address',
         'footer_text',
+        // NEW
+        'facebook_url',
+        'instagram_url',
+        'tiktok_url',
     ];
 
     /**

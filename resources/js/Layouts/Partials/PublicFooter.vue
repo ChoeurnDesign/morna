@@ -1,6 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+    faFacebookF,
+    faInstagram,
+    faTiktok,
+} from '@fortawesome/free-brands-svg-icons';
 
 const page = usePage();
 
@@ -32,6 +38,11 @@ const footerText = computed(() => {
 });
 
 const currentYear = computed(() => new Date().getFullYear());
+
+// Social URLs from settings
+const facebookUrl = computed(() => siteSettings.value.facebook_url || '');
+const instagramUrl = computed(() => siteSettings.value.instagram_url || '');
+const tiktokUrl = computed(() => siteSettings.value.tiktok_url || '');
 </script>
 
 <template>
@@ -111,6 +122,48 @@ const currentYear = computed(() => new Date().getFullYear());
                         >
                             Whether you’d like to pre-order, partner with us, or simply learn more, feel free to reach out. We’d love to hear from you.
                         </p>
+                    </div>
+
+                    <!-- Social links: Facebook, Instagram, TikTok -->
+                    <div
+                        v-if="facebookUrl || instagramUrl || tiktokUrl"
+                        class="flex items-center gap-3 mt-3"
+                    >
+                        <!-- Facebook -->
+                        <a
+                            v-if="facebookUrl"
+                            :href="facebookUrl"
+                            class="inline-flex items-center justify-center w-8 h-8 rounded-ful hover:bg-purple-100 hover:text-purple-700 transition-colors"
+                            aria-label="Facebook"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FontAwesomeIcon :icon="faFacebookF" class="w-3.5 h-3.5" />
+                        </a>
+
+                        <!-- Instagram -->
+                        <a
+                            v-if="instagramUrl"
+                            :href="instagramUrl"
+                            class="inline-flex items-center justify-center w-8 h-8 rounded-ful hover:bg-purple-100 hover:text-purple-700 transition-colors"
+                            aria-label="Instagram"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FontAwesomeIcon :icon="faInstagram" class="w-4 h-4" />
+                        </a>
+
+                        <!-- TikTok -->
+                        <a
+                            v-if="tiktokUrl"
+                            :href="tiktokUrl"
+                            class="inline-flex items-center justify-center w-8 h-8 rounded-ful hover:bg-purple-100 hover:text-purple-700 transition-colors"
+                            aria-label="TikTok"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FontAwesomeIcon :icon="faTiktok" class="w-4 h-4" />
+                        </a>
                     </div>
                 </div>
             </div>

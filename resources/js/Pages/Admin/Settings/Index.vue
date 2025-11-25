@@ -17,13 +17,15 @@ const form = useForm({
     contact_phone: props.settings.contact_phone || '',
     address: props.settings.address || '',
     footer_text: props.settings.footer_text || '',
+
+    facebook_url: props.settings.facebook_url || '',
+    instagram_url: props.settings.instagram_url || '',
+    tiktok_url: props.settings.tiktok_url || '',
 });
 
 const submit = () => {
-    // Prepare data for submission
     const submitData = new FormData();
     
-    // Add all form fields
     if (form.site_name !== null && form.site_name !== undefined) {
         submitData.append('site_name', form.site_name.trim() || '');
     }
@@ -31,8 +33,12 @@ const submit = () => {
     submitData.append('contact_phone', form.contact_phone || '');
     submitData.append('address', form.address || '');
     submitData.append('footer_text', form.footer_text || '');
+
+    // NEW: social links
+    submitData.append('facebook_url', form.facebook_url || '');
+    submitData.append('instagram_url', form.instagram_url || '');
+    submitData.append('tiktok_url', form.tiktok_url || '');
     
-    // Add files if they exist
     if (form.logo instanceof File) {
         submitData.append('logo', form.logo);
     }
@@ -45,7 +51,6 @@ const submit = () => {
         forceFormData: true,
         preserveScroll: true,
         onSuccess: () => {
-            // Reset file inputs after successful upload
             form.logo = null;
             form.favicon = null;
         }
@@ -226,50 +231,61 @@ const removeFavicon = () => {
                 <div class="bg-white rounded-2xl border border-gray-200 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
                     
-                    <div class="grid gap-4 md:grid-cols-2">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Email Address
-                            </label>
-                            <input
-                                v-model="form.contact_email"
-                                type="email"
-                                class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
-                                placeholder="contact@example.com"
-                            />
-                            <p v-if="form.errors.contact_email" class="mt-1 text-xs text-red-500">
-                                {{ form.errors.contact_email }}
-                            </p>
-                        </div>
+                    <!-- existing email / phone / address fields ... -->
 
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Phone Number
-                            </label>
-                            <input
-                                v-model="form.contact_phone"
-                                type="text"
-                                class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
-                                placeholder="+855 12 345 678"
-                            />
-                            <p v-if="form.errors.contact_phone" class="mt-1 text-xs text-red-500">
-                                {{ form.errors.contact_phone }}
-                            </p>
-                        </div>
-                    </div>
+                    <!-- Social Links -->
+                    <div class="mt-6">
+                        <h4 class="text-sm font-medium text-gray-800 mb-3">
+                            Social Links
+                        </h4>
+                        <div class="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Facebook URL
+                                </label>
+                                <input
+                                    v-model="form.facebook_url"
+                                    type="url"
+                                    class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                    placeholder="https://facebook.com/yourpage"
+                                />
+                                <p v-if="form.errors.facebook_url" class="mt-1 text-xs text-red-500">
+                                    {{ form.errors.facebook_url }}
+                                </p>
+                            </div>
 
-                    <div class="mt-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Address
-                        </label>
-                        <textarea
-                            v-model="form.address"
-                            rows="3"
-                            class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
-                            placeholder="Enter your business address"
-                        ></textarea>
-                        <p v-if="form.errors.address" class="mt-1 text-xs text-red-500">
-                            {{ form.errors.address }}
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Instagram URL
+                                </label>
+                                <input
+                                    v-model="form.instagram_url"
+                                    type="url"
+                                    class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                    placeholder="https://instagram.com/yourpage"
+                                />
+                                <p v-if="form.errors.instagram_url" class="mt-1 text-xs text-red-500">
+                                    {{ form.errors.instagram_url }}
+                                </p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    TikTok URL
+                                </label>
+                                <input
+                                    v-model="form.tiktok_url"
+                                    type="url"
+                                    class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                    placeholder="https://www.tiktok.com/@yourpage"
+                                />
+                                <p v-if="form.errors.tiktok_url" class="mt-1 text-xs text-red-500">
+                                    {{ form.errors.tiktok_url }}
+                                </p>
+                            </div>
+                        </div>
+                        <p class="mt-2 text-xs text-gray-500">
+                            Leave any field empty to hide that social icon in the footer.
                         </p>
                     </div>
                 </div>
