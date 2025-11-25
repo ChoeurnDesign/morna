@@ -44,22 +44,22 @@ const toggleActive = (step) => {
 
 <template>
     <AdminLayout title="Process Steps">
-        <div class="space-y-6">
-            <div class="flex justify-between items-center">
-                <div class="space-y-2">
-                    <h2 class="text-2xl font-bold text-gray-900">
+        <div class="px-2 sm:px-8 lg:px-20 py-2">
+            <div class="flex items-center justify-between mb-6">
+                <div class="min-w-0 mr-3">
+                    <h2 class="text-xl text-gray-900">
                         Process Steps
                     </h2>
                     <p class="text-sm text-gray-600">
                         Configure the step-by-step process that appears on the Process page for Morna Mulberry.
                     </p>
                 </div>
+
                 <Link
                     :href="getRoute('admin.process-steps.create')"
-                    class="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                    class="shrink-0 inline-flex items-center px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 whitespace-nowrap"
                 >
-                    <PlusIcon class="w-4 h-4" />
-                    Add Step
+                    + Add Step
                 </Link>
             </div>
 

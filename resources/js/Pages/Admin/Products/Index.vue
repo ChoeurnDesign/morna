@@ -58,21 +58,21 @@ const deleteProduct = (product) => {
 <template>
     <AdminLayout title="Products Management">
         <div class="px-2 sm:px-8 lg:px-20 py-2">
-            <div
-                class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6"
-            >
-                <div>
-                    <h1 class="text-2xl font-bold text-gray-900">Products</h1>
-                    <p class="text-sm text-gray-600 mt-1">
-                        Manage your product catalog and set main product
+            <div class="flex items-center justify-between mb-6">
+                <div class="min-w-0 mr-3">
+                    <h2 class="text-xl text-gray-900">
+                        Products
+                    </h2>
+                    <p class="text-sm text-gray-600">
+                        Manage your product catalog and set main product.
                     </p>
                 </div>
+
                 <Link
                     href="/admin/products/create"
-                    class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors mt-4 sm:mt-0"
+                    class="shrink-0 inline-flex items-center px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 whitespace-nowrap"
                 >
-                    <PlusIcon class="w-4 h-4 mr-2" />
-                    Add New Product
+                    + Add New Product
                 </Link>
             </div>
 
