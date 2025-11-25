@@ -134,7 +134,7 @@ const cancel = () => {
           v-model="form.name"
           type="text"
           required
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           :class="{ 'border-red-500': errors.name }"
           :disabled="processing"
         />
@@ -147,7 +147,7 @@ const cancel = () => {
         <input
           v-model="form.province"
           type="text"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           :disabled="processing"
         />
       </div>
@@ -158,7 +158,7 @@ const cancel = () => {
         <input
           v-model="form.location_text"
           type="text"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           :disabled="processing"
         />
       </div>
@@ -169,7 +169,7 @@ const cancel = () => {
         <textarea
           v-model="form.description"
           rows="4"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           :disabled="processing"
         ></textarea>
       </div>
@@ -185,8 +185,12 @@ const cancel = () => {
           :class="{ 'border-red-500': errors.main_image }"
           :disabled="processing"
         />
-        <p class="mt-1 text-xs text-gray-500">Recommended: Landscape orientation, high quality</p>
-        <p v-if="errors.main_image" class="mt-1 text-sm text-red-600">{{ errors.main_image }}</p>
+        <p class="mt-1 text-xs text-gray-500">
+          Recommended: Landscape orientation, high quality
+        </p>
+        <p v-if="errors.main_image" class="mt-1 text-sm text-red-600">
+          {{ errors.main_image }}
+        </p>
       </div>
 
       <!-- Map Image -->
@@ -200,8 +204,12 @@ const cancel = () => {
           :class="{ 'border-red-500': errors.map_image }"
           :disabled="processing"
         />
-        <p class="mt-1 text-xs text-gray-500">Optional: Map showing the location</p>
-        <p v-if="errors.map_image" class="mt-1 text-sm text-red-600">{{ errors.map_image }}</p>
+        <p class="mt-1 text-xs text-gray-500">
+          Optional: Map showing the location
+        </p>
+        <p v-if="errors.map_image" class="mt-1 text-sm text-red-600">
+          {{ errors.map_image }}
+        </p>
       </div>
 
       <!-- Active Status -->
@@ -213,7 +221,9 @@ const cancel = () => {
           class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
           :disabled="processing"
         />
-        <label for="is_active" class="ml-2 block text-sm text-gray-700">Active</label>
+        <label for="is_active" class="ml-2 block text-sm text-gray-700">
+          Active
+        </label>
       </div>
 
       <!-- General error placeholder (if you want) -->

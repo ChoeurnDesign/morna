@@ -113,20 +113,20 @@ const heroButtonLink = computed(() => {
 
 const featureCards = [
     {
-        title: "Real mulberry goodness",
-        text: "Crafted from real mulberries, not artificial flavors.",
+        title: "Real Mulberries, Real Flavour",
+        text: "No artificial flavours—just pure mulberry goodness",
     },
     {
-        title: "Student-born startup",
-        text: "Created by young Cambodian founders supporting local farms.",
+        title: "Born from Student Dreams",
+        text: " A Cambodian startup empowering young founders and local farms.",
     },
     {
-        title: "Farm-to-bottle care",
-        text: "Quality checked at every step: harvest, extraction, bottling.",
+        title: "Farm-to-Bottle Perfection",
+        text: " We oversee every step to ensure unmatched taste and quality.",
     },
     {
-        title: "Perfect for daily refresh",
-        text: "Ideal for studying, working, or relaxing.",
+        title: "Refreshment for Everyday Life",
+        text: "Study sessions, work hours, weekend rest—Morna fits every moment.",
     },
 ];
 
@@ -294,7 +294,7 @@ const mainProductComputed = computed(() => props.mainProduct);
                     <h2
                         class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 text-center lg:text-left"
                     >
-                        Why {{ siteName }}?
+                        Why Choose Morna?
                     </h2>
 
                     <div

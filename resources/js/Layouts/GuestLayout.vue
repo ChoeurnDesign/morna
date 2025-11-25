@@ -21,7 +21,7 @@ const props = defineProps({
 
         <main class="flex-1 w-full">
             <!-- Content width wrapper -->
-            <div class="w-full max-w-5xl mx-auto px-2 sm:px-6 lg:px-8 py-8 sm:py-8">
+            <div class="w-full mx-auto px-2 sm:px-6 lg:px-8 py-8 sm:py-8">
                 <slot />
             </div>
         </main>

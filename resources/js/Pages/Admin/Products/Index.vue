@@ -51,12 +51,6 @@ const deleteProduct = (product) => {
 
     deleteForm.delete(`/admin/products/${product.id}`, {
         preserveScroll: true,
-        onSuccess: () => {
-            console.log('Delete success');
-        },
-        onError: (errors) => {
-            console.error('Delete error:', errors);
-        },
     });
 };
 </script>
@@ -83,24 +77,31 @@ const deleteProduct = (product) => {
             </div>
 
             <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                <!-- HEADER ROW -->
                 <div
-                    class="grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 border-b border-gray-200 text-xs font-medium text-gray-700 uppercase tracking-wider"
+                    class="grid grid-cols-12 gap-3 px-4 sm:px-6 py-3 bg-gray-50 border-b border-gray-200 text-xs font-medium text-gray-700 uppercase tracking-wider"
                 >
-                    <div class="col-span-4">Product</div>
+                    <div class="col-span-5 sm:col-span-4">Product</div>
                     <div class="col-span-2 text-center">Size</div>
                     <div class="col-span-2 text-center">Price</div>
-                    <div class="col-span-2 text-center">Status</div>
-                    <div class="col-span-2 text-center">Actions</div>
+                    <!-- hide Status header on small screens -->
+                    <div class="hidden sm:block sm:col-span-2 text-center">
+                        Status
+                    </div>
+                    <div class="col-span-3 sm:col-span-2 text-center">
+                        Actions
+                    </div>
                 </div>
 
+                <!-- ROWS -->
                 <div v-if="products.length > 0" class="divide-y divide-gray-200">
                     <div
                         v-for="product in products"
                         :key="product.id"
-                        class="grid grid-cols-12 gap-4 px-6 py-4 items-center hover:bg-gray-50 transition-colors"
+                        class="grid grid-cols-12 gap-3 px-4 sm:px-6 py-4 items-center hover:bg-gray-50 transition-colors"
                     >
                         <!-- Product -->
-                        <div class="col-span-4 flex items-center space-x-3">
+                        <div class="col-span-5 sm:col-span-4 flex items-center space-x-3">
                             <div
                                 class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0"
                             >
@@ -117,20 +118,12 @@ const deleteProduct = (product) => {
                                     <FolderIcon class="w-6 h-6" />
                                 </div>
                             </div>
-                            <div>
-                                <div class="flex items-center space-x-2">
-                                    <h3
-                                        class="text-sm font-medium text-gray-900"
-                                    >
-                                        {{ product.name }}
-                                    </h3>
-                                    <span
-                                        v-if="product.is_main"
-                                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"
-                                    >
-                                        Main
-                                    </span>
-                                </div>
+                            <div class="min-w-0">
+                                <h3
+                                    class="text-sm font-medium text-gray-900 truncate"
+                                >
+                                    {{ product.name }}
+                                </h3>
                                 <p
                                     class="text-xs text-gray-500 mt-1 line-clamp-1"
                                 >
@@ -141,64 +134,101 @@ const deleteProduct = (product) => {
 
                         <!-- Size -->
                         <div class="col-span-2 text-center">
-                            <span class="text-sm text-gray-900">{{
-                                product.size_ml
-                            }} ml</span>
+                            <span class="text-sm text-gray-900">
+                                {{ product.size_ml }} ml
+                            </span>
                         </div>
 
                         <!-- Price -->
                         <div class="col-span-2 text-center">
-                            <span class="text-sm text-gray-900"
-                                >${{ product.price }}</span
-                            >
-                        </div>
-
-                        <!-- Status -->
-                        <div class="col-span-2 text-center">
-                            <span
-                                :class="[
-                                    'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium',
-                                    product.is_active
-                                        ? 'bg-green-100 text-green-800'
-                                        : 'bg-red-100 text-red-800',
-                                ]"
-                            >
-                                {{ product.is_active ? 'Active' : 'Inactive' }}
+                            <span class="text-sm text-gray-900">
+                                ${{ product.price }}
                             </span>
                         </div>
 
-                        <!-- Actions -->
-                        <div class="col-span-2 text-center">
+                        <!-- Status + Main (desktop/tablet) -->
+                        <div class="hidden sm:block sm:col-span-2 text-center">
                             <div
-                                class="flex items-center justify-center space-x-2"
+                                class="inline-flex items-center justify-center gap-1 whitespace-nowrap"
                             >
-                                <!-- Edit -->
-                                <Link
-                                    :href="`/admin/products/${product.id}/edit`"
-                                    class="inline-flex items-center p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                                    title="Edit Product"
+                                <!-- Active / Inactive -->
+                                <span
+                                    :class="[
+                                        'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium',
+                                        product.is_active
+                                            ? 'bg-green-100 text-green-800'
+                                            : 'bg-red-100 text-red-800',
+                                    ]"
                                 >
-                                    <PencilSquareIcon class="w-4 h-4" />
-                                </Link>
+                                    {{ product.is_active ? 'Active' : 'Inactive' }}
+                                </span>
 
-                                <!-- Set as Main -->
-                                <button
-                                    v-if="!product.is_main && product.is_active"
-                                    @click="setAsMain(product)"
-                                    class="inline-flex items-center p-2 text-gray-400 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
-                                    title="Set as Main Product"
+                                <!-- Main on the right -->
+                                <span
+                                    v-if="product.is_main"
+                                    class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-yellow-100 text-yellow-800"
                                 >
-                                    <StarIcon class="w-4 h-4" />
-                                </button>
+                                    Main
+                                </span>
+                            </div>
+                        </div>
 
-                                <!-- Delete -->
-                                <button
-                                    @click="deleteProduct(product)"
-                                    class="inline-flex items-center p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                                    title="Delete Product"
+                        <!-- Actions -->
+                        <div class="col-span-3 sm:col-span-2 text-center">
+                            <div
+                                class="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2"
+                            >
+                                <!-- Status + Main on mobile (inside Actions column) -->
+                                <div
+                                    class="sm:hidden inline-flex items-center justify-center gap-1 mb-1 whitespace-nowrap"
                                 >
-                                    <TrashIcon class="w-4 h-4" />
-                                </button>
+                                    <span
+                                        :class="[
+                                            'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium',
+                                            product.is_active
+                                                ? 'bg-green-100 text-green-800'
+                                                : 'bg-red-100 text-red-800',
+                                        ]"
+                                    >
+                                        {{ product.is_active ? 'Active' : 'Inactive' }}
+                                    </span>
+                                    <span
+                                        v-if="product.is_main"
+                                        class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-yellow-100 text-yellow-800"
+                                    >
+                                        Main
+                                    </span>
+                                </div>
+
+                                <div class="flex items-center justify-center space-x-1.5">
+                                    <!-- Edit -->
+                                    <Link
+                                        :href="`/admin/products/${product.id}/edit`"
+                                        class="inline-flex items-center p-1.5 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                                        title="Edit Product"
+                                    >
+                                        <PencilSquareIcon class="w-4 h-4" />
+                                    </Link>
+
+                                    <!-- Set as Main -->
+                                    <button
+                                        v-if="!product.is_main && product.is_active"
+                                        @click="setAsMain(product)"
+                                        class="inline-flex items-center p-1.5 text-gray-400 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
+                                        title="Set as Main Product"
+                                    >
+                                        <StarIcon class="w-4 h-4" />
+                                    </button>
+
+                                    <!-- Delete -->
+                                    <button
+                                        @click="deleteProduct(product)"
+                                        class="inline-flex items-center p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                        title="Delete Product"
+                                    >
+                                        <TrashIcon class="w-4 h-4" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

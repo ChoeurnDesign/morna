@@ -50,8 +50,7 @@ const currentYear = computed(() => new Date().getFullYear());
                         About {{ siteName }}
                     </p>
                     <p class="leading-relaxed">
-                        A student-led mulberry drink brand from Cambodia, focused
-                        on real ingredients and thoughtful production.
+                        Born from the passion of Cambodian students, Morna brings you a refreshing mulberry drink made with real fruit and community-centered values. Every bottle reflects meaningful production—sourced from local farms and crafted with care for every step.
                     </p>
                 </div>
 
@@ -110,8 +109,7 @@ const currentYear = computed(() => new Date().getFullYear());
                             class="text-xs text-gray-500 mt-2"
                             v-if="!contactEmail && !contactPhone && !address"
                         >
-                            For pre-orders, partnerships, or questions about the
-                            drink, please use the contact form.
+                            Whether you’d like to pre-order, partner with us, or simply learn more, feel free to reach out. We’d love to hear from you.
                         </p>
                     </div>
                 </div>

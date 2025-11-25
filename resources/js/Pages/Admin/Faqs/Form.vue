@@ -109,7 +109,7 @@ const cancel = () => {
           v-model="form.question"
           type="text"
           required
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           :class="{ 'border-red-500': errors.question }"
           :disabled="processing"
         />
@@ -126,7 +126,7 @@ const cancel = () => {
           v-model="form.answer"
           rows="4"
           required
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           :class="{ 'border-red-500': errors.answer }"
           :disabled="processing"
         ></textarea>

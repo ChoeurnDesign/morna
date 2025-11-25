@@ -61,7 +61,7 @@ const onFileChange = (event) => {
                     id="title"
                     v-model="form.title"
                     type="text"
-                    class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                    class="block w-full rounded-lg border-gray-300 text-base md:text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     @input="form.clearErrors('title')"
                 />
                 <p
@@ -84,7 +84,7 @@ const onFileChange = (event) => {
                     id="subtitle"
                     v-model="form.subtitle"
                     rows="2"
-                    class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                    class="block w-full rounded-lg border-gray-300 text-base md:text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
                 ></textarea>
                 <p
                     v-if="form.errors.subtitle"
@@ -107,7 +107,7 @@ const onFileChange = (event) => {
                         id="button_text"
                         v-model="form.button_text"
                         type="text"
-                        class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                        class="block w-full rounded-lg border-gray-300 text-base md:text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     />
                     <p
                         v-if="form.errors.button_text"
@@ -128,7 +128,7 @@ const onFileChange = (event) => {
                         v-model="form.button_link"
                         type="text"
                         placeholder="/product or full URL"
-                        class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                        class="block w-full rounded-lg border-gray-300 text-base md:text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     />
                     <p
                         v-if="form.errors.button_link"
@@ -152,7 +152,7 @@ const onFileChange = (event) => {
                         id="sort_order"
                         v-model.number="form.sort_order"
                         type="number"
-                        class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                        class="block w-full rounded-lg border-gray-300 text-base md:text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     />
                     <p
                         v-if="form.errors.sort_order"
@@ -191,7 +191,7 @@ const onFileChange = (event) => {
                     type="file"
                     accept="image/*"
                     multiple
-                    class="block w-full text-sm text-gray-700 file:mr-3 file:rounded-full file:border-0 file:bg-purple-600 file:px-4 file:py-1.5 file:text-xs file:font-medium file:text-white hover:file:bg-purple-700"
+                    class="block w-full text-base md:text-sm text-gray-700 file:mr-3 file:rounded-full file:border-0 file:bg-purple-600 file:px-4 file:py-1.5 file:text-xs file:font-medium file:text-white hover:file:bg-purple-700"
                     @change="onFileChange"
                 />
                 <p

@@ -93,7 +93,6 @@ const removeFavicon = () => {
 };
 </script>
 
-
 <template>
     <AdminLayout title="General Settings">
         <div class="space-y-6">
@@ -119,7 +118,7 @@ const removeFavicon = () => {
                         <input
                             v-model="form.site_name"
                             type="text"
-                            class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                            class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                             placeholder="Leave empty to use only logo"
                         />
                         <p class="mt-1 text-xs text-gray-500">
@@ -235,7 +234,7 @@ const removeFavicon = () => {
                             <input
                                 v-model="form.contact_email"
                                 type="email"
-                                class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                                 placeholder="contact@example.com"
                             />
                             <p v-if="form.errors.contact_email" class="mt-1 text-xs text-red-500">
@@ -250,7 +249,7 @@ const removeFavicon = () => {
                             <input
                                 v-model="form.contact_phone"
                                 type="text"
-                                class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                                 placeholder="+855 12 345 678"
                             />
                             <p v-if="form.errors.contact_phone" class="mt-1 text-xs text-red-500">
@@ -266,7 +265,7 @@ const removeFavicon = () => {
                         <textarea
                             v-model="form.address"
                             rows="3"
-                            class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                            class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                             placeholder="Enter your business address"
                         ></textarea>
                         <p v-if="form.errors.address" class="mt-1 text-xs text-red-500">
@@ -286,7 +285,7 @@ const removeFavicon = () => {
                         <textarea
                             v-model="form.footer_text"
                             rows="3"
-                            class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                            class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                             placeholder="Copyright information or additional footer text"
                         ></textarea>
                         <p class="mt-2 text-xs text-gray-500">

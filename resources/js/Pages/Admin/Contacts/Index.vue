@@ -71,7 +71,7 @@ const removeContact = (contact) => {
             v-model="search"
             type="text"
             placeholder="Search by name, email, phone, or message"
-            class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            class="px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           />
         </div>
       </div>

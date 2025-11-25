@@ -53,12 +53,10 @@ const onFileChange = (e) => {
         props.form.image_path = file;
         newImagePreview.value = URL.createObjectURL(file);
     } else {
-        // FIX: For new records, completely remove the image_path field when no file is selected
+        // For new records, completely remove the image_path field when no file is selected
         if (!props.isEdit) {
-            // Remove the image_path from form data entirely for new records
             delete props.form.image_path;
         } else {
-            // For edits, keep the existing image path as is
             props.form.image_path = props.form.image_path;
         }
         newImagePreview.value = null;
@@ -148,10 +146,12 @@ const submitForm = () => {
                         v-model="form.step_number"
                         type="number"
                         min="1"
-                        class="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        class="w-32 px-3 py-2 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                         required
                     >
-                    <div v-if="form.errors.step_number" class="mt-1 text-sm text-red-600">{{ form.errors.step_number }}</div>
+                    <div v-if="form.errors.step_number" class="mt-1 text-sm text-red-600">
+                        {{ form.errors.step_number }}
+                    </div>
                 </div>
 
                 <!-- Title -->
@@ -163,11 +163,13 @@ const submitForm = () => {
                         id="title"
                         v-model="form.title"
                         type="text"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                         placeholder="e.g., Harvesting, Processing, Bottling"
                         required
                     >
-                    <div v-if="form.errors.title" class="mt-1 text-sm text-red-600">{{ form.errors.title }}</div>
+                    <div v-if="form.errors.title" class="mt-1 text-sm text-red-600">
+                        {{ form.errors.title }}
+                    </div>
                 </div>
 
                 <!-- Description -->
@@ -179,11 +181,13 @@ const submitForm = () => {
                         id="description"
                         v-model="form.description"
                         rows="4"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                         placeholder="Describe this step in the process..."
                         required
                     ></textarea>
-                    <div v-if="form.errors.description" class="mt-1 text-sm text-red-600">{{ form.errors.description }}</div>
+                    <div v-if="form.errors.description" class="mt-1 text-sm text-red-600">
+                        {{ form.errors.description }}
+                    </div>
                 </div>
                 
                 <!-- Image Upload (File Input) -->
@@ -199,12 +203,18 @@ const submitForm = () => {
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
                         accept="image/*"
                     >
-                    <p class="text-xs text-gray-500 mt-1">Optional: Upload an image for this process step</p>
-                    <div v-if="form.errors.image_path" class="mt-1 text-sm text-red-600">{{ form.errors.image_path }}</div>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Optional: Upload an image for this process step
+                    </p>
+                    <div v-if="form.errors.image_path" class="mt-1 text-sm text-red-600">
+                        {{ form.errors.image_path }}
+                    </div>
                     
                     <!-- Image Preview -->
                     <div v-if="currentImagePath" class="mt-4">
-                        <p class="text-xs font-medium text-gray-600 mb-2">Current/New Image:</p>
+                        <p class="text-xs font-medium text-gray-600 mb-2">
+                            Current/New Image:
+                        </p>
                         <img 
                             :src="currentImagePath" 
                             alt="Process Step Image"
@@ -228,17 +238,26 @@ const submitForm = () => {
                     <select
                         id="icon_name"
                         v-model="form.icon_name"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                     >
                         <option value="">Select an icon (Optional)</option>
-                        <option v-for="icon in commonIcons" :key="icon" :value="icon">
+                        <option
+                            v-for="icon in commonIcons"
+                            :key="icon"
+                            :value="icon"
+                        >
                             {{ icon }}
                         </option>
                     </select>
                     <p class="text-xs text-gray-500 mt-1">
-                        Selected icon: <span class="font-semibold text-purple-600">{{ form.icon_name || 'None' }}</span>
+                        Selected icon:
+                        <span class="font-semibold text-purple-600">
+                            {{ form.icon_name || 'None' }}
+                        </span>
                     </p>
-                    <div v-if="form.errors.icon_name" class="mt-1 text-sm text-red-600">{{ form.errors.icon_name }}</div>
+                    <div v-if="form.errors.icon_name" class="mt-1 text-sm text-red-600">
+                        {{ form.errors.icon_name }}
+                    </div>
                 </div>
 
                 <!-- Active Status -->
@@ -249,11 +268,16 @@ const submitForm = () => {
                         type="checkbox"
                         class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                     >
-                    <label for="is_active" class="ml-2 text-sm font-medium text-gray-700 cursor-pointer">
+                    <label
+                        for="is_active"
+                        class="ml-2 text-sm font-medium text-gray-700 cursor-pointer"
+                    >
                         Active (show on website)
                     </label>
                 </div>
-                <div v-if="form.errors.is_active" class="mt-1 text-sm text-red-600">{{ form.errors.is_active }}</div>
+                <div v-if="form.errors.is_active" class="mt-1 text-sm text-red-600">
+                    {{ form.errors.is_active }}
+                </div>
             </div>
 
             <!-- Form Actions -->
