@@ -1,6 +1,7 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { Link, useForm } from '@inertiajs/vue3';
+import { ArrowLeftIcon } from '@heroicons/vue/24/solid';
 import { ref } from 'vue';
 
 const form = useForm({
@@ -43,7 +44,16 @@ const submit = () => {
         <!-- compact horizontal padding on mobile -->
         <div class="px-2 sm:px-8 lg:px-20 py-4">
             <!-- Header -->
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-4 mb-6">
+                <Link
+                    href="/admin/products"
+                    class="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                    aria-label="Back to products"
+                >
+                    <ArrowLeftIcon class="w-5 h-5" />
+                </Link>
+
+                <!-- Title and description on the right -->
                 <div>
                     <h1 class="text-2xl font-bold text-gray-900">
                         Create New Product
@@ -52,12 +62,6 @@ const submit = () => {
                         Add a new product to your catalog
                     </p>
                 </div>
-                <Link
-                    href="/admin/products"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                    ← Back to Products
-                </Link>
             </div>
 
             <!-- Form -->

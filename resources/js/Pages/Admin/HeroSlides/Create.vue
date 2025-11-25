@@ -1,5 +1,6 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { ArrowLeftIcon } from '@heroicons/vue/24/solid';
 import { useForm, Link } from '@inertiajs/vue3';
 
 const form = useForm({
@@ -27,7 +28,16 @@ const onFileChange = (event) => {
 
 <template>
     <AdminLayout title="New hero slide">
-        <div class="mb-6 flex items-center justify-between">
+        <div class="mb-6 flex items-center gap-4">
+            <Link
+                href="/admin/hero-slides"
+                class="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Back to list"
+            >
+                <ArrowLeftIcon class="w-5 h-5" />
+            </Link>
+
+            <!-- Title and description on the right -->
             <div>
                 <h2 class="text-xl font-semibold text-gray-900">
                     New hero slide
@@ -37,12 +47,6 @@ const onFileChange = (event) => {
                     images for this slide.
                 </p>
             </div>
-            <Link
-                href="/admin/hero-slides"
-                class="text-xs text-gray-600 hover:text-gray-900"
-            >
-                ← Back to list
-            </Link>
         </div>
 
         <form
