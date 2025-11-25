@@ -25,7 +25,10 @@ const address = computed(() => {
 });
 
 const footerText = computed(() => {
-    return siteSettings.value.footer_text || `© ${new Date().getFullYear()} ${siteName.value}. All rights reserved.`;
+    return (
+        siteSettings.value.footer_text ||
+        `© ${new Date().getFullYear()} ${siteName.value}. All rights reserved.`
+    );
 });
 
 const currentYear = computed(() => new Date().getFullYear());
@@ -33,50 +36,59 @@ const currentYear = computed(() => new Date().getFullYear());
 
 <template>
     <footer class="border-t bg-white/90 mt-4">
-        <div class="px-10 sm:px-14 lg:px-20 py-6 space-y-6">
+        <!-- smaller mx on mobile -->
+        <div class="px-3 sm:px-6 lg:px-8 py-6 space-y-6">
             <!-- Info row: About + Links + Contact - 3 columns until 398px -->
-            <div class="grid grid-cols-1 min-[398px]:grid-cols-3 gap-6 text-xs sm:text-sm text-gray-600">
+            <div
+                class="grid grid-cols-1 min-[398px]:grid-cols-3 gap-6 text-xs sm:text-sm text-gray-600"
+            >
                 <!-- About Morna -->
                 <div class="space-y-2">
-                    <p class="text-sm font-bold text-gray-800 uppercase tracking-wide">
+                    <p
+                        class="text-sm font-bold text-gray-800 uppercase tracking-wide"
+                    >
                         About {{ siteName }}
                     </p>
                     <p class="leading-relaxed">
-                        A student-led mulberry drink brand from Cambodia, focused on
-                        real ingredients and thoughtful production.
+                        A student-led mulberry drink brand from Cambodia, focused
+                        on real ingredients and thoughtful production.
                     </p>
                 </div>
 
                 <!-- Quick links -->
                 <div class="space-y-2">
-                    <p class="text-sm font-bold text-gray-800 uppercase tracking-wide">
+                    <p
+                        class="text-sm font-bold text-gray-800 uppercase tracking-wide"
+                    >
                         Quick links
                     </p>
-                    <nav class="flex flex-wrap gap-2">
+                    <nav
+                        class="flex flex-col sm:flex-row flex-wrap gap-x-3 gap-y-1"
+                    >
                         <Link
                             href="/"
-                            class="hover:text-purple-700 transition-colors"
+                            class="hover:text-purple-700 transition-colors no-underline"
                         >
                             Home
                         </Link>
-                        <span class="text-gray-300">•</span>
+
                         <Link
                             href="/product"
-                            class="hover:text-purple-700 transition-colors"
+                            class="hover:text-purple-700 transition-colors no-underline"
                         >
                             Product
                         </Link>
-                        <span class="text-gray-300">•</span>
+
                         <Link
                             href="/faq"
-                            class="hover:text-purple-700 transition-colors"
+                            class="hover:text-purple-700 transition-colors no-underline"
                         >
                             FAQ
                         </Link>
-                        <span class="text-gray-300">•</span>
+
                         <Link
                             href="/contact"
-                            class="hover:text-purple-700 transition-colors"
+                            class="hover:text-purple-700 transition-colors no-underline"
                         >
                             Contact
                         </Link>
@@ -85,16 +97,21 @@ const currentYear = computed(() => new Date().getFullYear());
 
                 <!-- Contact Information -->
                 <div class="space-y-2">
-                    <p class="text-sm font-bold text-gray-800 uppercase tracking-wide">
+                    <p
+                        class="text-sm font-bold text-gray-800 uppercase tracking-wide"
+                    >
                         Contact Information
                     </p>
-                    <div class="leading-relaxed space-y-1">
+                    <div class="leading-relaxed space-y-1 break-words">
                         <p v-if="contactEmail">{{ contactEmail }}</p>
                         <p v-if="contactPhone">{{ contactPhone }}</p>
                         <p v-if="address">{{ address }}</p>
-                        <p class="text-xs text-gray-500 mt-2" v-if="!contactEmail && !contactPhone && !address">
-                            For pre-orders, partnerships, or questions about the drink,
-                            please use the contact form.
+                        <p
+                            class="text-xs text-gray-500 mt-2"
+                            v-if="!contactEmail && !contactPhone && !address"
+                        >
+                            For pre-orders, partnerships, or questions about the
+                            drink, please use the contact form.
                         </p>
                     </div>
                 </div>
@@ -103,13 +120,17 @@ const currentYear = computed(() => new Date().getFullYear());
             <!-- Partner logos - FIXED: Always 2 rows, images won't wrap -->
             <div class="space-y-4">
                 <!-- Row 1: Implemented + Co-funded + Funded -->
-                <div class="grid grid-cols-3 items-center justify-center gap-4 sm:gap-6 text-center">
+                <div
+                    class="grid grid-cols-3 items-center justify-center gap-4 sm:gap-6 text-center"
+                >
                     <!-- Implemented by -->
                     <div class="space-y-1">
                         <p class="text-xs sm:text-sm text-gray-800 mb-2">
                             Implemented by
                         </p>
-                        <div class="flex items-center justify-center gap-2 flex-nowrap">
+                        <div
+                            class="flex items-center justify-center gap-2 flex-nowrap"
+                        >
                             <img
                                 src="/images/sponsor/wonder-logo.png"
                                 alt="Wonders within people logo"

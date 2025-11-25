@@ -162,10 +162,11 @@ const mainProductComputed = computed(() => props.mainProduct);
             </div>
         </div>
 
-        <div class="min-h-screen bg-gray-50">
+        <!-- Page content (small margin-x on mobile) -->
+        <div class="space-y-8 sm:space-y-10 lg:space-y-12">
             <!-- HERO -->
-            <section class="mb-8 sm:mb-12 lg:mb-16 pt-4 sm:pt-6">
-                <div class="px-10 sm:px-14 lg:px-20">
+            <section class="mb-4 sm:mb-8 lg:mb-10 pt-2 sm:pt-4">
+                <div class="px-3 sm:px-10 lg:px-20">
                     <div
                         class="flex flex-col lg:grid lg:grid-cols-5 lg:items-center gap-6 sm:gap-8"
                     >
@@ -259,7 +260,8 @@ const mainProductComputed = computed(() => props.mainProduct);
                             <p
                                 class="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed text-center lg:text-left"
                             >
-                                Where local fruit and youthful innovation come together in every refreshing bottle.
+                                Where local fruit and youthful innovation come
+                                together in every refreshing bottle.
                             </p>
 
                             <div
@@ -287,8 +289,8 @@ const mainProductComputed = computed(() => props.mainProduct);
             </section>
 
             <!-- WHY -->
-            <section class="mb-10 sm:mb-12 lg:mb-16">
-                <div class="px-10 sm:px-14 lg:px-20">
+            <section class="mb-8 sm:mb-10 lg:mb-12">
+                <div class="px-3 sm:px-10 lg:px-20">
                     <h2
                         class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 text-center lg:text-left"
                     >
@@ -321,8 +323,8 @@ const mainProductComputed = computed(() => props.mainProduct);
             </section>
 
             <!-- SIGNATURE DRINK -->
-            <section class="mb-8 sm:mb-10 lg:mb-12">
-                <div class="px-10 sm:px-14 lg:px-20">
+            <section class="mb-4 sm:mb-8 lg:mb-10">
+                <div class="px-3 sm:px-10 lg:px-20">
                     <div
                         class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 gap-2"
                     >

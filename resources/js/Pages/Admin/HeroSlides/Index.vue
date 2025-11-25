@@ -66,7 +66,7 @@ const primaryImageUrl = (slide) => {
         <!-- table -->
         <div
             v-if="slides.data && slides.data.length"
-            class="overflow-hidden rounded-xl border bg-white shadow-sm"
+            class="w-full overflow-hidden rounded-xl border bg-white shadow-sm"
         >
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50">
@@ -77,7 +77,8 @@ const primaryImageUrl = (slide) => {
                         <th class="px-4 py-2 text-left text-gray-500">
                             Title
                         </th>
-                        <th class="px-4 py-2 text-left text-gray-500">
+                        <!-- Active header only on md+ -->
+                        <th class="px-4 py-2 text-left text-gray-500 hidden md:table-cell">
                             Active
                         </th>
                         <th class="px-4 py-2 text-left text-gray-500">
@@ -131,7 +132,8 @@ const primaryImageUrl = (slide) => {
                             </div>
                         </td>
 
-                        <td class="px-4 py-2 align-top">
+                        <!-- Active badge column (md and up only) -->
+                        <td class="px-4 py-2 align-top hidden md:table-cell">
                             <span
                                 class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs"
                                 :class="slide.is_active ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'"
@@ -145,20 +147,30 @@ const primaryImageUrl = (slide) => {
                         </td>
 
                         <td class="px-4 py-2 align-top text-right">
-                            <div class="inline-flex items-center gap-2">
-                                <Link
-                                    :href="`/admin/hero-slides/${slide.id}/edit`"
-                                    class="text-xs text-purple-700 hover:underline"
+                            <div class="inline-flex flex-col items-end gap-1">
+                                <!-- Active badge inside actions for small screens -->
+                                <span
+                                    class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs md:hidden"
+                                    :class="slide.is_active ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'"
                                 >
-                                    Edit
-                                </Link>
-                                <button
-                                    type="button"
-                                    class="text-xs text-red-600 hover:underline"
-                                    @click="destroy(slide)"
-                                >
-                                    Delete
-                                </button>
+                                    {{ slide.is_active ? 'Active' : 'Inactive' }}
+                                </span>
+
+                                <div class="inline-flex items-center gap-2">
+                                    <Link
+                                        :href="`/admin/hero-slides/${slide.id}/edit`"
+                                        class="text-xs text-purple-700 hover:underline"
+                                    >
+                                        Edit
+                                    </Link>
+                                    <button
+                                        type="button"
+                                        class="text-xs text-red-600 hover:underline"
+                                        @click="destroy(slide)"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         </td>
                     </tr>

@@ -30,15 +30,15 @@ const siteSettings = computed(() => page.props.siteSettings || {});
 const logoUrl = computed(() => siteSettings.value.logo_url);
 
 const navItems = [
-    { label: 'Dashboard',      href: '/admin',             icon: LayoutDashboard },
-    { label: 'Hero slides',    href: '/admin/hero-slides', icon: Image },
-    { label: 'About page',     href: '/admin/about',       icon: Info },
-    { label: 'Products',       href: '/admin/products',    icon: Package },
+    { label: 'Dashboard',      href: '/admin',              icon: LayoutDashboard },
+    { label: 'Hero slides',    href: '/admin/hero-slides',  icon: Image },
+    { label: 'About page',     href: '/admin/about',        icon: Info },
+    { label: 'Products',       href: '/admin/products',     icon: Package },
     { label: 'Process steps',  href: '/admin/process-steps',icon: Workflow },
-    { label: 'Origins',        href: '/admin/origins',     icon: Map },
-    { label: 'FAQs',           href: '/admin/faqs',        icon: HelpCircle },
-    { label: 'Contacts',       href: '/admin/contacts',    icon: MessagesSquare },
-    { label: 'Settings',       href: '/admin/settings',    icon: SettingsIcon },
+    { label: 'Origins',        href: '/admin/origins',      icon: Map },
+    { label: 'FAQs',           href: '/admin/faqs',         icon: HelpCircle },
+    { label: 'Contacts',       href: '/admin/contacts',     icon: MessagesSquare },
+    { label: 'Settings',       href: '/admin/settings',     icon: SettingsIcon },
 ];
 
 const currentUrl = computed(() => page.url);
@@ -50,7 +50,7 @@ const closeSidebar = () => {
 // Logout with confirmation
 const handleLogout = (event) => {
     event.preventDefault();
-    
+
     if (confirm('Are you sure you want to logout?')) {
         router.post('/logout');
     }
@@ -59,6 +59,7 @@ const handleLogout = (event) => {
 
 <template>
     <div class="min-h-screen bg-gray-100 flex">
+        <!-- Desktop sidebar -->
         <aside class="hidden md:flex md:flex-col w-64 bg-white border-r">
             <div class="h-14 flex items-center px-4 border-b">
                 <Link href="/" class="flex items-center gap-2">
@@ -100,7 +101,9 @@ const handleLogout = (event) => {
             </nav>
         </aside>
 
+        <!-- Main area -->
         <div class="flex-1 flex flex-col relative">
+            <!-- Top bar -->
             <header
                 class="h-14 bg-white border-b flex items-center justify-between px-4 md:px-6 z-10"
             >
@@ -136,6 +139,7 @@ const handleLogout = (event) => {
                 </div>
             </header>
 
+            <!-- Mobile sidebar -->
             <Transition
                 enter-active-class="transition duration-300 ease-out"
                 enter-from-class="-translate-x-full"
@@ -185,7 +189,7 @@ const handleLogout = (event) => {
                                     currentUrl === item.href ||
                                     currentUrl.startsWith(item.href + '/')
                                         ? 'bg-purple-50 text-purple-700 font-medium'
-                                        : 'text-gray-600 hover:bg-gray-100', 
+                                        : 'text-gray-600 hover:bg-gray-100',
                                 ]"
                             >
                                 <component :is="item.icon" class="w-4 h-4" />
@@ -196,8 +200,10 @@ const handleLogout = (event) => {
                 </div>
             </Transition>
 
-            <main class="flex-1 p-4 md:p-6">
-                <div class="max-w-6xl mx-auto">
+            <!-- CONTENT -->
+            <main class="flex-1 p-3 md:p-6">
+                <!-- full-width on mobile, centered on md+ -->
+                <div class="w-full md:max-w-6xl md:mx-auto">
                     <slot />
                 </div>
             </main>

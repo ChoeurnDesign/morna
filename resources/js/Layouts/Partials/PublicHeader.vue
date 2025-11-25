@@ -39,7 +39,9 @@ const logoUrl = computed(() => {
 
 const siteName = computed(() => {
     // Only show site name if there's NO logo
-    return siteSettings.value.logo_url ? null : (siteSettings.value.site_name || 'Morna Mulberry');
+    return siteSettings.value.logo_url
+        ? null
+        : siteSettings.value.site_name || 'Morna Mulberry';
 });
 
 const closeAll = () => {
@@ -50,7 +52,7 @@ const closeAll = () => {
 // Logout with confirmation
 const handleLogout = (event) => {
     event.preventDefault();
-    
+
     if (confirm('Are you sure you want to logout?')) {
         router.post('/logout');
     }
@@ -70,8 +72,9 @@ const handleMobileLogout = () => {
         class="sticky top-0 z-30 border-b border-purple-100/70 bg-gradient-to-b from-purple-50/80 to-white/90 backdrop-blur"
     >
         <div class="relative">
+            <!-- smaller px on mobile -->
             <nav
-                class="px-10 sm:px-14 lg:px-20 py-0 flex items-center justify-between gap-3"
+                class="px-3 sm:px-6 lg:px-8 py-0 flex items-center justify-between gap-3"
             >
                 <!-- Left: brand + desktop nav -->
                 <div class="flex items-center gap-6">
@@ -79,9 +82,9 @@ const handleMobileLogout = () => {
                     <div class="flex items-center h-full">
                         <Link href="/" class="flex items-center h-full">
                             <!-- Logo Image -->
-                            <img 
-                                v-if="logoUrl" 
-                                :src="logoUrl" 
+                            <img
+                                v-if="logoUrl"
+                                :src="logoUrl"
                                 :alt="siteSettings.site_name || 'Morna Mulberry'"
                                 class="h-16 w-auto object-contain"
                             />
@@ -92,7 +95,7 @@ const handleMobileLogout = () => {
                                 >
                                     M
                                 </span>
-                                <span 
+                                <span
                                     class="font-medium text-gray-800 text-sm sm:text-base"
                                 >
                                     {{ siteSettings.site_name || 'Morna Mulberry' }}
@@ -156,7 +159,9 @@ const handleMobileLogout = () => {
                                 v-if="isAccountOpen"
                                 class="absolute right-0 mt-2 w-44 rounded-xl bg-white border border-gray-100 shadow-lg py-2 text-sm z-40"
                             >
-                                <p class="px-3 pb-1 text-[11px] uppercase tracking-wide text-gray-400">
+                                <p
+                                    class="px-3 pb-1 text-[11px] uppercase tracking-wide text-gray-400"
+                                >
                                     Account
                                 </p>
 
@@ -230,7 +235,8 @@ const handleMobileLogout = () => {
                     v-if="isMobileNavOpen"
                     class="custom-md:hidden absolute inset-x-0 top-full bg-white/95 backdrop-blur border-t shadow-lg"
                 >
-                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-1">
+                    <!-- match layout paddings -->
+                    <div class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-3 space-y-1">
                         <!-- Main links -->
                         <Link
                             v-for="link in navLinks"
@@ -250,7 +256,9 @@ const handleMobileLogout = () => {
                         <!-- Account / auth -->
                         <div class="border-t border-gray-100 mt-3 pt-2 text-sm">
                             <template v-if="user">
-                                <p class="px-3 pb-1 text-[11px] uppercase tracking-wide text-gray-400">
+                                <p
+                                    class="px-3 pb-1 text-[11px] uppercase tracking-wide text-gray-400"
+                                >
                                     Account
                                 </p>
 

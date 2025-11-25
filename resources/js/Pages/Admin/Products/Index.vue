@@ -63,7 +63,7 @@ const deleteProduct = (product) => {
 
 <template>
     <AdminLayout title="Products Management">
-        <div class="px-10 sm:px-14 lg:px-20 py-6">
+        <div class="px-2 sm:px-8 lg:px-20 py-2">
             <div
                 class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6"
             >
