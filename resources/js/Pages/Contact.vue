@@ -91,7 +91,7 @@ const submit = () => {
                                 id="name"
                                 v-model="form.name"
                                 type="text"
-                                class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                                 autocomplete="name"
                             />
                             <p
@@ -116,7 +116,7 @@ const submit = () => {
                                     id="phone"
                                     v-model="form.phone"
                                     type="text"
-                                    class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                    class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                                     autocomplete="tel"
                                 />
                                 <p
@@ -139,7 +139,7 @@ const submit = () => {
                                     id="email"
                                     v-model="form.email"
                                     type="email"
-                                    class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                    class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                                     autocomplete="email"
                                 />
                                 <p
@@ -163,7 +163,7 @@ const submit = () => {
                                 id="message"
                                 v-model="form.message"
                                 rows="4"
-                                class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                class="block w-full rounded-lg border-gray-300 text-base shadow-sm focus:border-purple-500 focus:ring-purple-500"
                             ></textarea>
                             <p
                                 v-if="form.errors.message"

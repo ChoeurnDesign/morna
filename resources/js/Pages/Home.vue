@@ -1,6 +1,6 @@
 <script setup>
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -23,37 +23,6 @@ const props = defineProps({
 });
 
 const modules = [Autoplay, Pagination];
-
-// ZOOM STATES AND METHODS
-const showZoomedImage = ref(false);
-
-const isZooming = ref(false);
-const zoomPosition = ref({ x: "50%", y: "50%" });
-
-function handleZoomEnter() {
-    if (window.innerWidth >= 768) {
-        isZooming.value = true;
-    }
-}
-
-function handleZoomMove(event) {
-    if (!isZooming.value) return;
-    const { target } = event;
-    if (!(target instanceof HTMLElement)) return;
-
-    const { left, top, width, height } = target.getBoundingClientRect();
-    const x = (event.clientX - left) / width;
-    const y = (event.clientY - top) / height;
-
-    zoomPosition.value.x = `${x * 100}%`;
-    zoomPosition.value.y = `${y * 100}%`;
-}
-
-function handleZoomLeave() {
-    isZooming.value = false;
-    zoomPosition.value.x = "50%";
-    zoomPosition.value.y = "50%";
-}
 
 // Logo and site name from settings
 const logoUrl = computed(() => {
@@ -135,33 +104,6 @@ const mainProductComputed = computed(() => props.mainProduct);
 
 <template>
     <GuestLayout :title="siteName" :site-settings="siteSettings">
-        <!-- Zoom modal -->
-        <div
-            v-if="showZoomedImage && mainProductComputed"
-            class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            @click.self="showZoomedImage = false"
-        >
-            <div
-                class="relative w-full h-full max-w-lg max-h-screen overflow-auto"
-            >
-                <button
-                    class="absolute top-4 right-4 text-white text-3xl font-bold p-2 z-50"
-                    @click="showZoomedImage = false"
-                >
-                    &times;
-                </button>
-                <img
-                    :src="mainProductComputed.image_url"
-                    :alt="mainProductComputed.name"
-                    class="w-full h-auto object-contain cursor-grab"
-                    style="max-width: unset; max-height: unset"
-                />
-                <p class="text-center text-white text-sm mt-4">
-                    Tap to close. Drag or scroll to view details.
-                </p>
-            </div>
-        </div>
-
         <!-- Page content (small margin-x on mobile) -->
         <div class="space-y-8 sm:space-y-10 lg:space-y-12">
             <!-- HERO -->
@@ -385,34 +327,20 @@ const mainProductComputed = computed(() => props.mainProduct);
                             </a>
                         </div>
 
-                        <!-- IMAGE (only inner radius) -->
+                        <!-- IMAGE (mobile-friendly, full bottle visible with radius) -->
                         <div
                             class="w-full md:w-48 lg:w-56 xl:w-64 flex justify-center items-center order-1 md:order-2"
                         >
-                            <div
-                                class="w-full h-auto flex items-center justify-center"
-                            >
+                            <div class="w-full flex items-center justify-center">
                                 <div
                                     v-if="mainProductComputed.image_url"
-                                    class="w-full h-64 rounded-xl overflow-hidden relative cursor-zoom-in"
-                                    @click="showZoomedImage = true"
-                                    @mouseenter="handleZoomEnter"
-                                    @mousemove="handleZoomMove"
-                                    @mouseleave="handleZoomLeave"
+                                    class="w-full max-w-xs sm:max-w-sm md:max-w-full flex items-center justify-center"
                                 >
-                                    <div
-                                        class="w-full h-full bg-contain bg-no-repeat transition-all duration-300"
-                                        :style="{
-                                            backgroundImage: `url(${mainProductComputed.image_url})`,
-                                            backgroundPosition:
-                                                zoomPosition.x +
-                                                ' ' +
-                                                zoomPosition.y,
-                                            backgroundSize: isZooming
-                                                ? '250%'
-                                                : '100%',
-                                        }"
-                                    ></div>
+                                    <img
+                                        :src="mainProductComputed.image_url"
+                                        :alt="mainProductComputed.name"
+                                        class="w-auto max-w-full max-h-72 sm:max-h-80 object-contain rounded-lg"
+                                    />
                                 </div>
                                 <div
                                     v-else
@@ -506,6 +434,7 @@ img {
     height: auto;
 }
 
+/* Only for background helper if used elsewhere */
 .bg-cover {
     background-size: cover;
     background-position: center;
